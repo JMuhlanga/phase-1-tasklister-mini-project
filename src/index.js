@@ -1,15 +1,18 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // your code here
-  document.querySelector('form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    handleTask(e.target.new-task-description.value)
-  })
-});
+document.addEventListener("DOMContentLoaded",() =>{
+  const newTaskForm = document.getElementById("create-task-form");
+  newTaskForm.addEventListener("submit", createNewTask);
+} );
 
-function handleTask(task){
-  let p = document.createElement('li');
-  let btn =document.createElement('button');
-  btn.textContent = 'x';
-  p.textContent = task;
-  document.querySelector('#tasks').appendChild(p)
-}
+const createNewTask = event => {
+  event.preventDefault();
+  const newTaskDescription = document.getElementById("new-task-description");
+  const newTask = document.createElement("li");
+  newTask.innerText = newTaskDescription.ariaValueMax;
+
+  appendNewTask(newTask);
+  event.target.reset();
+};
+
+const appendNewTask = task => {
+  document.getElementById("tasks").appendChild(task);
+};
